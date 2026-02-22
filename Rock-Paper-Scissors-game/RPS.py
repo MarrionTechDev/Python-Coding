@@ -11,6 +11,7 @@ Ties = 0
 Player1 = 0
 Player2 = 0
 
+print("\n---Rock Paper Scissor Game---")
 while True:
 
     player_mode = int(input("Choose playing mode (comvp(1)/pVp(2)): "))
@@ -20,7 +21,8 @@ while True:
 
             while True:
                 player_choice = input("Rock, Paper, Scissors? (r/p/s): ").lower()
-
+                
+                print("")
                 if player_choice == "r":
                     print("You chose 🪨")
                     break
@@ -71,6 +73,7 @@ while True:
         
         while True:
             replay = input("\nReplay game?(y/n): ").lower()
+            print("")
             if replay == "n":
                 print("Thanks for playing!!")
                 exit()
@@ -147,4 +150,5 @@ while True:
             else:
                 print("Invalid input")   
     else:
+
         print("Invalid Input")
