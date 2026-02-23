@@ -12,18 +12,13 @@ User guesses a randomly generated number with hints (too high / too low).
 ### ✊ Rock Paper Scissors
 Classic game against the computer.
 
-### 🎲 Random Number Generator
-Generates a random number within a specified range.
-
-### 📖 Random Word Generator
-Selects a random word from a predefined local list.
-
 ## Concepts Practiced
 - Loops
 - Conditionals
 - Functions
 - User Input
 - Python random module
+- File handling
 
 ## How to Run
 Run any file using:
