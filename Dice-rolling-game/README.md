@@ -1,10 +1,30 @@
-Description:
+# Dice Roller
 
-A program that simulates rolling a pair of dice. Each time the program runs, it 
-should randomly generate two numbers between 1 and 6 (inclusive), representing 
-the result of each die. The program should then display the results and ask if the 
-user would like to roll again.
+A terminal-based dice rolling simulator built in Python.
 
-Modifications:
-1. Have the program ask the user how many dice they would want to roll.
-2. Add a counter that keeps track of how many times the user rolled the dice during the session 
+## Description
+This program simulates rolling dice. Each roll generates random numbers between 1 and 6 (inclusive), representing the result of each die.
+
+After displaying the results, the program prompts the user to roll again.
+
+## Features
+- Random dice roll generation
+- Supports rolling multiple dice
+- Replay functionality
+- Tracks total number of rolls during the session
+
+## Concepts Practiced
+- Loops
+- Conditional statements
+- Python's random module
+- User input handling
+- Session state tracking
+
+## Modifications & Enhancements
+- Added support for user-defined number of dice
+- Implemented roll counter to track total rolls per session
+
+## Future Improvements
+- Add graphical dice representation
+- Add dice total sum display
+- Add probability statistics tracking
