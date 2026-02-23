@@ -1,12 +1,34 @@
-Description:
+# Number Guesser
 
-A program that lets the computer randomly select a number between 1 and 100, and then prompts the player 
-to guess the number. The program gives hints if the guess is too high or too low. 
+A terminal-based number-guessing game built in Python.
 
-Modifications:
-1. Allows the user to specify the maximum and minimum values for the guessing
-   range before the game starts
-2. Limit to how many times the user can guess. The program should end if the number
-   of guesses runs out, and should show the correct number
-3. Feature to keep track of the fewest attempts it took to guess the number correctly.
-   (i.e., the best score displayed at the end of each game)
+## Description
+This program generates a random number within a specified range and prompts the player to guess the number.
+
+After each guess, the program provides feedback indicating whether the guess is too high or too low until the correct number is guessed or the attempt limit is reached.
+
+## Features
+- Random number generation
+- Customizable minimum and maximum range
+- Limited number of guess attempts
+- High/low feedback system
+- Displays the correct number if attempts run out
+- Tracks and displays best score (fewest attempts)
+
+## Concepts Practiced
+- Loops
+- Conditional logic
+- Functions
+- Python's random module
+- Input validation
+- State tracking across game sessions
+
+## Modifications & Enhancements
+- Added user-defined guessing range
+- Implemented attempt limit with automatic game termination
+- Added the best score tracking system
+
+## Future Improvements
+- Add difficulty modes
+- Add replay functionality
+- Convert to GUI version
