@@ -1,14 +1,35 @@
-Description: 
+# Rock Paper Scissors
 
-A program to simulate playing rock, paper, scissors. The game prompts the user to choose rock, paper, 
-or scissors by typing 'r', 'p', or 's'. The computer will randomly select its choice. The game will 
-display both choices using emojis and determine the winner based on the rules.
+A terminal-based Rock Paper Scissors game built in Python.
 
-Modifications:
-1. The first player (or computer) to win two out of three 
-  rounds is declared the overall winner.
-2. Keeping a tally of how many times the player wins, loses, or ties with the 
-  computer. The results are displayed at the end of the game.
-3. A two-player option with two players taking turns to input 
-  their choices. The program should then determine the winner based on their 
-  inputs.  
+## Description: 
+This program simulates a game of Rock, Paper, Scissors.  
+The user selects rock, paper, or scissors by typing 'r', 'p', or 's'.  
+The computer randomly generates its choice. 
+The game displays both selections using emojis and determines the winner according to standard game rules.
+
+## Features
+- Randomized computer opponent
+- Emoji-based choice display
+- Best 2 out of 3 round system
+- Win/Loss/Tie tracking
+- Two-player mode
+- Final results summary at the end of the game
+
+## Concepts Practiced
+- Conditional statements
+- Loops
+- Functions
+- Python's random module
+- Input handling and validation
+- Score tracking logic
+
+## Modifications & Enhancements
+- Implemented a "best two out of three" win condition
+- Added tally system to track wins, losses, and ties
+- Implemented a two-player mode with turn-based input
+
+## Future Improvements
+- Add input error handling improvements
+- Add replay option
+- Convert to GUI version
