@@ -21,7 +21,7 @@ After displaying the results, the program prompts the user to roll again.
 - Session state tracking
 
 ## Modifications & Enhancements
-- Added support for user-defined number of dice
+- Added support for a user-defined number of dice
 - Implemented roll counter to track total rolls per session
 
 ## Future Improvements
