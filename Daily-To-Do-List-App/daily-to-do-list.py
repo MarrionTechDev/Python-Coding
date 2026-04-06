@@ -1,12 +1,26 @@
+import json 
+import os
 
-tasks = [
-    {"task_item": "Study for quiz", "done": True},
-    {"task_item": "Code", "done": False},
-    {"task_item": "Write documentation", "done": False},
-    {"task_item": "Clean room", "done": False}
-]
+def load_file():
 
-def add_task():
+    if os.path.exists("tasks.json"):
+        with open("tasks.json", "r") as file:
+            return json.load(file)
+        
+    else:
+        print("Empty save file. New save file created")
+        return []
+    
+tasks = load_file()
+
+
+def save_file(tasks):
+
+    with open("tasks.json", "w") as file:
+        json.dump(tasks, file, indent=4)
+
+
+def add_task(): 
     while True:
         task = input("\nAdd a task (n to return): ")
         if task == "":
@@ -15,6 +29,8 @@ def add_task():
         if task == "n":
             break
         tasks.append({"task_item": task, "done": False})
+        save_file(tasks)
+
 
 def view_task():
     print("\n--Tasks--")
@@ -58,6 +74,7 @@ def mark_task():
             continue
 
         tasks[marked - 1]["done"] = not tasks[marked - 1]["done"]
+        save_file(tasks)
 
 
 def edit_task():
@@ -92,13 +109,11 @@ def edit_task():
             
             edited_task = input("Enter edit (n to return): ")
 
-            if edited_task == 'n':
-                break
-            break
+            if edited_task != 'n':
+                tasks[edit - 1]["task_item"] = edited_task
+                save_file(tasks)
+                view_task()
 
-        tasks[edit - 1]["task_item"] = edited_task
-
-        view_task()
 
 def remove_task():
 
@@ -128,11 +143,26 @@ def remove_task():
         deleted = tasks[remove-1]['task_item']
         tasks.pop(remove - 1)
 
+        save_file(tasks)
+
         view_task()
 
+        
         print(f"\n{deleted} was removed")
         break
+        
+        
     
+def clear_all():
+
+    with open("tasks.json", "w") as file:
+        json.dump([],file)
+        global tasks
+        tasks = []
+        save_file(tasks) 
+    print("\nAll tasks have been cleared")
+
+#Might get rid of it later/ not really needed
 def go_back():
     back = input("\nn to return: ").lower()
     while back != "n":
@@ -140,8 +170,10 @@ def go_back():
         back = input("\nn to return: ").lower()
     
 def run():
+    
     while True:
-        print("\n---Menu--- \n1. Add task\n2. View tasks\n3. Mark tasks\n4. Edit tasks\n5. Remove task\n6. Exit \n")
+
+        print("\n---Menu--- \n1. Add task\n2. View tasks\n3. Mark tasks\n4. Edit tasks\n5. Remove task\n6. Clear all tasks\n7. Exit \n")
         user_input = input("Enter number for option: ")
 
         if user_input == "1":
@@ -162,6 +194,11 @@ def run():
             go_back()
 
         elif user_input == "6":
+            clear_all()
+
+        elif user_input == "7":
+            save_file(tasks)
+
             print("Exit")
             break
         
