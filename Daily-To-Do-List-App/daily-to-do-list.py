@@ -1,5 +1,9 @@
 import json 
 import os
+import datetime
+
+
+current_hour = int(datetime.datetime.now().strftime("%H"))
 
 def load_file():
 
@@ -10,8 +14,6 @@ def load_file():
     else:
         print("Empty save file. New save file created")
         return []
-    
-tasks = load_file()
 
 
 def save_file(tasks):
@@ -19,8 +21,8 @@ def save_file(tasks):
     with open("tasks.json", "w") as file:
         json.dump(tasks, file, indent=4)
 
-
-def add_task(): 
+    
+def add_task(tasks): 
     while True:
         task = input("\nAdd a task (n to return): ")
         if task == "":
@@ -28,11 +30,14 @@ def add_task():
             continue
         if task == "n":
             break
-        tasks.append({"task_item": task, "done": False})
+
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+
+        tasks.append({"task_item": task, "done": False, 'created by': timestamp})
         save_file(tasks)
 
 
-def view_task():
+def view_task(tasks):
     print("\n--Tasks--")
 
     if not tasks:
@@ -46,10 +51,10 @@ def view_task():
         else:
             status = " "
             
-        print(f"{i}) [{status}] {task['task_item']}")
+        print(f"{i}) [{status}] {task['task_item']}   /{task["created by"]}")
 
 
-def mark_task():
+def mark_task(tasks):
 
     if not tasks:
         print("\n--Tasks--")
@@ -57,7 +62,7 @@ def mark_task():
         return
     
     while True:
-        view_task()
+        view_task(tasks)
         marked = input("\nSelect task number you want to mark as done (n to return): ")
     
         if marked == "n":
@@ -77,14 +82,14 @@ def mark_task():
         save_file(tasks)
 
 
-def edit_task():
+def edit_task(tasks):
 
     if not tasks:
         print("\n--Tasks--")
         print("No task entered")
         return
     
-    view_task()
+    view_task(tasks)
     
     while True:
         edit = input("\nSelect task number you want to edit (n to return): ")
@@ -109,20 +114,24 @@ def edit_task():
             
             edited_task = input("Enter edit (n to return): ")
 
-            if edited_task != 'n':
+            if edited_task == 'n':
+                break
+
+            else:
                 tasks[edit - 1]["task_item"] = edited_task
                 save_file(tasks)
-                view_task()
+                view_task(tasks)
+                
 
 
-def remove_task():
+def remove_task(tasks):
 
     if not tasks:
         print("\n--Tasks--")
         print("No task entered")
         return
     
-    view_task()
+    view_task(tasks)
     
     while True:
         remove = input("\nSelect task number you want to remove (n to return): ")
@@ -145,22 +154,18 @@ def remove_task():
 
         save_file(tasks)
 
-        view_task()
+        view_task(tasks)
 
         
         print(f"\n{deleted} was removed")
         break
         
-        
     
-def clear_all():
-
-    with open("tasks.json", "w") as file:
-        json.dump([],file)
-        global tasks
-        tasks = []
-        save_file(tasks) 
+def clear_all(tasks):
+    tasks.clear()
+    save_file(tasks)
     print("\nAll tasks have been cleared")
+        
 
 #Might get rid of it later/ not really needed
 def go_back():
@@ -170,31 +175,46 @@ def go_back():
         back = input("\nn to return: ").lower()
     
 def run():
+
+    tasks = load_file()
+
+    if current_hour >= 0 and current_hour < 12:
+        print("\nGood Morning Today!")
+    elif current_hour >= 12 and current_hour < 18:
+        print("\nGood Afternoon")
+    elif current_hour >= 18 and current_hour < 19:
+        print("\nGood Evening")
+    else:
+        print("\nFine night for work today.")
     
+    print("What would you like to do today?")
+
+
     while True:
 
         print("\n---Menu--- \n1. Add task\n2. View tasks\n3. Mark tasks\n4. Edit tasks\n5. Remove task\n6. Clear all tasks\n7. Exit \n")
         user_input = input("Enter number for option: ")
 
         if user_input == "1":
-            add_task()
+            add_task(tasks)
 
         elif user_input == "2":
-            view_task()
+            view_task(tasks)
             go_back()
 
         elif user_input == "3":
-            mark_task()
+            mark_task(tasks)
 
         elif user_input == "4":
-            edit_task()
+            edit_task(tasks)
 
         elif user_input == "5":
-            remove_task()
-            go_back()
+            remove_task(tasks)
 
         elif user_input == "6":
-            clear_all()
+            clear_all(tasks)
+            tasks = load_file()
+            
 
         elif user_input == "7":
             save_file(tasks)
