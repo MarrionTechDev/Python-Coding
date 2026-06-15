@@ -66,6 +66,7 @@ def add_on_press(event=None):
         listbox.delete(editing_task_index)
         listbox.insert(editing_task_index,output)
         task_input.delete(0,tk.END)
+        editing_task_index = None
 
 
 def delete_selected(event=None):
